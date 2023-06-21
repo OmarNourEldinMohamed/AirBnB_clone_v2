@@ -1,23 +1,22 @@
 #!/usr/bin/python3
-"""Test suite for Amenity class of the models.amenity module"""
-import unittest
-
-from models.base_model import BaseModel
+""" """
+from tests.test_models.test_base_model import test_basemodel
 from models.amenity import Amenity
+import os
 
 
-class TestAmenity(unittest.TestCase):
-    """Test cases for the Amenity class"""
+class test_Amenity(test_basemodel):
+    """ amenity test class"""
 
-    def setUp(self):
-        self.amenity = Amenity()
+    def __init__(self, *args, **kwargs):
+        """inti the test class """
+        super().__init__(*args, **kwargs)
+        self.name = "Amenity"
+        self.value = Amenity
 
-    def test_amenity_is_a_subclass_of_basemodel(self):
-        self.assertTrue(issubclass(type(self.amenity), BaseModel))
-
-    def test_attr_is_a_class_attr(self):
-        self.assertTrue(hasattr(self.amenity, "name"))
-
-    def test_class_attr(self):
-        self.assertIs(type(self.amenity.name), str)
-        self.assertFalse(bool(getattr(self.amenity, "name")))
+    def test_name2(self):
+        """testing name type """
+        new = self.value()
+        self.assertEqual(type(new.name), str if
+                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
+                         type(None))
